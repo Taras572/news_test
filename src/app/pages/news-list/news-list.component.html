@@ -1,0 +1,28 @@
+<div>
+  <h1 class="text-center bg-color-white">World News</h1>
+  <div class="container bg-color-white grid gap-2">
+    <div class="flex justify-between">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle checked (click)="loadNewsByCategory('general')">General</mat-button-toggle>
+        <mat-button-toggle (click)="loadNewsByCategory('sport')">Sport</mat-button-toggle>
+        <mat-button-toggle (click)="loadNewsByCategory('technology')">Technology</mat-button-toggle>
+        <mat-button-toggle (click)="loadNewsByCategory('health')">Health</mat-button-toggle>
+        <mat-button-toggle (click)="loadNewsByCategory('science')">Science</mat-button-toggle>
+        <mat-button-toggle (click)="loadNewsByCategory('entertainment')">Entertainment</mat-button-toggle>
+        <mat-button-toggle (click)="loadNewsByCategory('business')">Business</mat-button-toggle>
+      </mat-button-toggle-group>
+      <div class="flex gap-1">
+        <input placeholder="Type..." type="text" class="search-field" matInput #searchInput>
+        <button mat-stroked-button (click)="searchNews(searchInput.value)">Search</button>
+      </div>
+    </div>
+    <div class="news-grid grid gap-2">
+      <div *ngFor="let article of news" class="news-item">
+        <h2>{{ article.title }}</h2>
+        <img *ngIf="article.urlToImage" [src]="article.urlToImage" [alt]="article.title" class="news-image">
+        <p>{{ article.description }}</p>
+        <a [href]="article.url" target="_blank">Read on...</a>
+      </div>
+    </div>
+  </div>
+</div>
